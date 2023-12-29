@@ -1,31 +1,22 @@
 import time
+import random
 
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
+SEARCH = {
+    'python': 'https://www.linkedin.com/jobs/search?keywords=Python&location=Spain&geoId=105646813&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0',
+    'javascript': 'https://www.linkedin.com/jobs/search?keywords=JavaScript&location=Spain&geoId=105646813&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0',
+    'java': 'https://www.linkedin.com/jobs/search?keywords=JavaScript&location=Spain&geoId=105646813&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0',
+    'php': 'https://www.linkedin.com/jobs/search?keywords=php&location=Espa%C3%B1a&geoId=105646813&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0',
+}
+
 driver = webdriver.Chrome()
 
-driver.get('https://www.linkedin.com/home')
-login_btn = driver.find_element(By.XPATH, "//a[contains(text(), 'Inicia sesión')]")
+url = random.choice(SEARCH)
+driver.get(url)
 
-wait = WebDriverWait(driver, timeout=2)
-wait.until(lambda d : login_btn.is_displayed())
-login_btn.click()
-
-username_input = driver.find_element(By.ID, 'username').send_keys('santizu72@gmail.com')
-password_input = driver.find_element(By.ID, 'password').send_keys('Secret11.li')
-login_btn = driver.find_element(By.XPATH, "//a[contains(text(), 'Inicia sesión')]")
-
-wait = WebDriverWait(driver, timeout=2)
-wait.until(lambda d : login_btn.is_displayed())
-login_btn.click()
-
-cancel = driver.find_element(By.XPATH, "//a[contains(text(), 'Cancelar')]")
-wait = WebDriverWait(driver, timeout=2)
-wait.until(lambda d : cancel.is_displayed())
-login_btn.click()
-cancel.click()
 time.sleep(20)
 
