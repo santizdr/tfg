@@ -1,2 +1,7 @@
 .log
 .pyc
+/tfgenv/
+milvus
+*.meta
+*pyc
+tmp
